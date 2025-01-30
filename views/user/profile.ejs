@@ -1,0 +1,75 @@
+<%- include('../partials/header.ejs')%>
+<main class="profile-main">
+    <h3><%=user.firstName%>'s Listings</h3>
+    <div class="profile-content">
+        <fieldset class="profile-header">
+            <div class="left-side">
+                <label class="profile-label">Item</label>
+            </div>
+            <div class="right-side">
+                <label class="profile-label">Status</label>
+                <label class="profile-label">Action</label>
+            </div>
+        </fieldset>
+        <fieldset class="profile-listings">
+            <%if(items.length) {
+                items.forEach(item => {%>
+                    <div class="item-listing">
+                        <div class="left-side">
+                            <a class="profile-label" href="/items/<%=item.id%>"><%=item.title%></a>
+                        </div>
+                        <div class="right-side">
+                            <%if(!item.active) {%>
+                                <label class="profile-label">inactive</label>
+                            <%} else {%>
+                                <label class="profile-label">active</label>
+                            <%}%>
+                            <form>
+                                <button class="item-button" type="submit" formmethod="GET" formaction="/items/<%= item.id%>/edit">Edit</button>
+                                <button class="item-button" type="submit" formmethod="POST" formaction="/items/<%= item.id%>/?_method=DELETE">Delete</button>
+                                <button 
+                                    class="item-button" type="submit" formmethod="GET" formaction="/items/<%= item.id%>/offer"
+                                    <%if(item.totalOffers <= 0) {%>
+                                        disabled
+                                    <%}%>
+                                >View Offers</button>
+                            </form>
+                        </div>
+                    </div>
+                    <%});
+            } else {%>
+                <label class="profile-label">You have not posted any listings</label>
+            <%}%>
+        </fieldset>
+    </div>
+    <h3><%=user.firstName%>'s Offers</h3>
+    <div class="profile-content">
+        <fieldset class="profile-header">
+            <div class="left-side">
+                <label class="profile-label">Item</label>
+            </div>
+            <div class="right-side">
+                <label class="profile-label">Status</label>
+                <label class="profile-label">Amount</label>
+            </div>
+        </fieldset>
+        <fieldset class="profile-listings">
+            <%if(offers.length) {
+                offers.forEach(offer => {%>
+                    <div class="item-listing">
+                        <div class="left-side">
+                            <a class="profile-label" href="/items/<%=offer.offerItem.id%>"><%=offer.offerItem.title%></a>
+                        </div>
+                        <div class="right-side">
+                            <label class="profile-label"><%= offer.status%></label>
+                            <label class="profile-label">$<%= offer.amount%></label>
+                        </div>
+                    </div>
+                    <%});
+            } else {%>
+                <label class="profile-label">You have not posted any offers</label>
+            <%}%>
+        </fieldset>
+    </div>
+</main>
+<%- include('../partials/footer.ejs')%>

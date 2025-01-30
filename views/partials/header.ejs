@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        <link rel="stylesheet" href="/css/default.css">
+    </head>
+    <body>
+        <header>
+            <div class="header-block">
+                <div class="header-logo">
+                    <a href="/"><img src="/images/dah_logo.png" alt="DAH Logo" id="logo-img"></a>
+                </div>
+                <div class="header-nav">
+                    <nav>
+                        <form method="GET" action="/items">
+                            <div class="search-bar">
+                                <input type="text" placeholder="Search.." name="search">
+                                <button type="submit" class="search-button"><img  class="search-icon" src="/images/search_icon.png" alt="search icon"></button>
+                            </div>
+                        </form>
+                        <a href="/items">Browse</a>
+                        <a href="/items/new">Sell</a>
+                        <%if(!user) {%>
+                            <a href="/users/new">Sign Up</a>
+                            <a href="/users/login">Login</a>
+                        <%} else {%>
+                            <a href="/users/profile">Profile</a>
+                            <a href="/users/logout">Logout</a>
+                        <%}%>
+                        
+                    </nav>
+                </div>
+            </div>      
+        </header>
+        <div class="content-wrap">
+            <% if(errorMessages.length > 0) {%>
+                <% errorMessages.forEach(message=>{%>
+                    <div class='error'>
+                        <%=message%>
+                    </div>
+                    <%});%>
+                        <%}%>
+            
+                            <% if(successMessages.length > 0) {%>
+            
+                                <% successMessages.forEach(message=>{%>
+                                    <div class='success'>
+                                        <%=message%>
+                                    </div>
+                                    <%});%>
+                                        <%}%>

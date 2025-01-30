@@ -1,0 +1,39 @@
+<%- include('../partials/header.ejs')%>
+            <main class>
+                <div class="form-grid">
+                    <div class="form-info">
+                        <h2>Sell Your Item!</h2>
+                        <p>Create a listing for your drumline item!</p>
+                    </div>
+                    <div class="form-content">
+                        <form method="POST" action="/items" enctype="multipart/form-data" class="item-form">
+                            <fieldset>
+                                <label for="title">Title: <input id="title" name="title" type="text" placeholder="New Item Name" required></label>
+                            </fieldset>
+                            <fieldset>
+                                <label for="condition">Condition: 
+                                    <select id="condition" name="condition" required>
+                                        <option value="">(select one)</option>
+                                        <option value="New">New</option>
+                                        <option value="Lightly Used">Lightly Used</option>
+                                        <option value="Used">Used</option>
+                                        <option value="Very Used">Very Used</option>
+                                        <option value="Extremely Used">Extremely Used</option>
+                                    </select>
+                                </label>
+                            </fieldset>
+                            <fieldset>
+                                <label for="price">Price: <input id="price" name="price" type="number" min="0.00" step="0.01" required></label>
+                            </fieldset>
+                            <fieldset>
+                                <label for="details">Details: <textarea id="details" name="details" rows="5" cols="33" placeholder="Any extra details about your product" required></textarea></label>
+                            </fieldset>
+                            <fieldset>
+                                <label for="image">Image: <input id="image" name="image" type="file" accept="image/*" required></label>
+                            </fieldset>
+                            <input type="submit" value="Submit">
+                        </form>
+                    </div>
+                </div>
+            </main>
+<%- include('../partials/footer.ejs')%>

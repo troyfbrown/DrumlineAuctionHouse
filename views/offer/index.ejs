@@ -1,0 +1,35 @@
+<%- include('../partials/header.ejs')%>
+<main>
+    <h3>Offers Revieved For: <%=offers[0].offerItem.title%></h3>
+    <div class="profile-content">
+        <fieldset class="profile-header">
+            <div class="left-side">
+                <label class="profile-label">Buyer</label>
+            </div>
+            <div class="right-side">
+                <label class="profile-label">Amount</label>
+                <label class="profile-label">Action</label>
+            </div>
+        </fieldset>
+        <fieldset class="profile-listings">
+            <%offers.forEach(offer => {%>
+                <div class="item-listing">
+                    <div class="left-side">
+                        <label class="profile-label"><%=offer.maker.firstName%> <%=offer.maker.lastName%></label>
+                    </div>
+                    <div class="right-side">
+                        <label class="profile-label">$<%=offer.amount%></label>
+                        <%if(offer.offerItem.active) {%>
+                            <form method="POST" action="/items/<%= offer.offerItem.id%>/offer/<%= offer.id%>?_method=PUT">
+                                <input class="item-button" type="submit" value="Accept">
+                            </form>
+                        <%} else {%>
+                            <label class="profile-label"><%=offer.status%></label>
+                        <%}%>
+                    </div>
+                </div>
+            <%});%>
+        </fieldset>
+    </div>
+</main>
+<%- include('../partials/footer.ejs')%>

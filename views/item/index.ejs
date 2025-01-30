@@ -1,0 +1,26 @@
+<%- include('../partials/header.ejs')%>
+            <main>
+                <div class="items-grid">
+                    <%if(items.length) {%>
+                        <%items.sort(function(a,b){
+                            return parseFloat(a.price) - parseFloat(b.price);
+                        });%>
+                        <%items.forEach(item=>{%>
+                            <div class="items item-link">
+                                <a href="/items/<%= item.id%>">
+                                    <img src="<%= item.image%>">
+                                </a>
+                                <h4 class="item-title"><%= item.title%></h4>
+                                <label class="item-condition"><%= item.condition%></label>
+                                <br>
+                                <label class="price">$<%= item.price%></label>
+                                <br>
+                                <label class="offers"><%= item.totalOffers%> offers</label>
+                            </div>
+                        <%});%>   
+                    <%} else {%>
+                        <p>There are no items to display</p>
+                    <%}%>
+                </div>
+            </main>
+<%- include('../partials/footer.ejs')%>

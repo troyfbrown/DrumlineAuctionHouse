@@ -1,0 +1,15 @@
+<%- include('../partials/header.ejs')%>
+<main>
+    <form action = '/users' method = 'POST' class="user-form">
+        <label for="firstName" class="user-label">First Name</label>
+        <input type="text" id="firstName" name="firstName" required>
+        <label for="lastName" class="user-label">Last Name</label></td>
+        <input type="text" id="lastName" name="lastName" required></td>
+        <label for="email" class="user-label">Email Address</label>
+        <input type="email" id="email" name="email">
+        <label for="password" class="user-label">Password</label>
+        <input type="password" id="password" name="password" minlength="8" required>
+        <input type="submit" value="Sign Up">      
+    </form>
+</main>
+<%- include('../partials/footer.ejs')%>
